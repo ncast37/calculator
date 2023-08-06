@@ -27,7 +27,7 @@ body {
     align-items: center;
     justify-content: center;
     
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 .btn-container, 
@@ -62,6 +62,7 @@ body {
 
 .alt-op {
     background-color: var(--primary-alt-color);
+    font-weight: 500;
 }
 
 .op {
