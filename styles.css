@@ -1,7 +1,7 @@
 :root {
     --primary-color: #ff9500;
     --secondar-color: #505050;
-    --primary-alt-color: #D4D4D2;
+    --primary-alt-color: #c5c5c3;
     --secondary-alt-color: #1c1c1c;
     --white-color: #ffffff;
 }
@@ -14,7 +14,6 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    outline:1px black solid;
     font-family: Helvetica, Helvetica, sans-serif;
 }
 
@@ -42,7 +41,11 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
 }
+.screen-container {
+    /* background-color: grey; */
+    height: 35%;
 
+}
 
 .btn {
     border-radius: 50%;
@@ -50,25 +53,41 @@ body {
     height: 52px;
     border: none;
     font-weight: 600;
-    font-size:x-large
+    font-size:x-large;
+    position:relative;
+    transition: background-color 0.7s;
 }
 
-
-.screen-container {
-    /* background-color: grey; */
-    height: 35%;
-
+.btn::before {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    border: none;
 }
 
+.btn:hover::before{
+    opacity: 1;
+}
+
+/*btn 1*/
 .alt-op {
     background-color: var(--primary-alt-color);
     font-weight: 500;
 }
-
+/*btn 1*/
 .op {
     background-color: var(--primary-color);
 }
-
+/*btn 1*/
 .num {
     background-color: var(--secondar-color);
 }
@@ -76,16 +95,35 @@ body {
 
 .num,
 .op {
-    color: var(--white-color);;
+    color: var(--white-color);
 }
+
+
 #zero {
     border-radius: 20%/50%;
     width:45%;
     text-align: left;
     padding-left: 20px;
     font-size: x-large;
+    position: relative;
+    transition: background-color 0.2s;
   }
 
-  #minus {
-    font-style: oblique;
-  }
+ #zero::before {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20%/50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+
+
+#zero:hover::before{
+    opacity: 1;
+}
