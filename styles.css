@@ -15,6 +15,7 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: Helvetica, Helvetica, sans-serif;
+    background-color: antiquewhite;
 }
 
 .calc-body {
@@ -33,6 +34,23 @@ body {
 .screen-container {
     width: 90%;
 }
+
+.operation-screen{
+    background-color: #c5c5c3;
+    height:50%;
+    width:100%;
+    color:red;
+}
+.result-screen {
+    height: 50%;
+    width: 100%;
+    color: var(--white-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: 300;
+    font-size: 3.5em;
+}
 .btn-container {
     height: 65%;
 
@@ -42,8 +60,9 @@ body {
     flex-wrap: wrap;
 }
 .screen-container {
-    /* background-color: grey; */
-    height: 35%;
+    /* background-color: rgb(243, 15, 15);  */
+    height: 30%;
+    margin: 10px;
 
 }
 
