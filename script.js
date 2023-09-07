@@ -76,7 +76,7 @@ buttonsArray.forEach((button) => {
                 calculator.updateLog(calculator.keyMap[event.target.id]);
                 calculator.removeExtraDecimals();
                 calculator.primary = calculator.convertToString(calculator.log);
-                calculator.updateScreen(calculator.primary);
+                calculator.updateScreen();
                 break; 
 
             case "op" :
@@ -103,7 +103,7 @@ buttonsArray.forEach((button) => {
                 const result = calculator.operation(calculator.secondary, calculator.primary);
                 calculator.primary = result.toFixed(maxPrecision);
                 calculator.operation = calculator.keyMap[event.target.id]; 
-                calculator.updateScreen(calculator.primary); 
+                calculator.updateScreen(); 
                 calculator.secondary = null;
                 calculator.log = [''];
                 break;
@@ -118,11 +118,11 @@ buttonsArray.forEach((button) => {
                     if(arr[0] === '-'){
                         arr.shift();
                         calculator.primary = arr.join('');
-                        calculator.updateScreen(calculator.primary);
+                        calculator.updateScreen();
                          
                     } else{
                         calculator.primary = '-' + calculator.primary;
-                        calculator.updateScreen(calculator.primary);
+                        calculator.updateScreen();
                     }
                 } else if(event.target.id === 'percent'){
                     calculator.primary = calculator.primary / 100.00;
