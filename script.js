@@ -96,7 +96,18 @@ buttonsArray.forEach((button) => {
                 break;
 
             case "alt":
-                console.log("Alt Selected");
+                if(event.target.id === 'plus-minus'){
+                    const arr = calculator.primary.split('');
+                    if(arr[0] === '-'){
+                        arr.shift();
+                        calculator.primary = arr.join('');
+                        calculator.updateScreen(calculator.primary);
+                         
+                    } else{
+                        calculator.primary = '-' + calculator.primary;
+                        calculator.updateScreen(calculator.primary);
+                    }
+                }
                 break;
             case "reset":
                 calculator.reset();
@@ -122,6 +133,3 @@ function divide(num1, num2){
 function multiply(num1, num2){
     return parseFloat(num1) * parseFloat(num2);
 };
-
-const precision1 = calculator.secondary % 1 === 0 ? 0 : calculator.secondary.toString().split('.')[1].length;
-const precision2 = calculator.primary % 1 === 0 ? 0 : calculator.primary.toString().split('.')[1].length;
