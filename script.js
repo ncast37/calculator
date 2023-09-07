@@ -84,7 +84,11 @@ buttonsArray.forEach((button) => {
                 if(stop === true){
                     break;
                 }
-                calculator.primary = calculator.operation(calculator.secondary, calculator.primary).toFixed(2);
+                const precision1 = calculator.secondary % 1 === 0 ? 0 : calculator.secondary.toString().split('.')[1].length;
+                const precision2 = calculator.primary % 1 === 0 ? 0 : calculator.primary.toString().split('.')[1].length;
+                const maxPrecision = Math.max(precision1, precision2);
+                const result = calculator.operation(calculator.secondary, calculator.primary);
+                calculator.primary = result.toFixed(maxPrecision);
                 calculator.operation = calculator.keyMap[event.target.id]; 
                 calculator.updateScreen(calculator.primary); 
                 calculator.secondary = null;
@@ -119,3 +123,5 @@ function multiply(num1, num2){
     return parseFloat(num1) * parseFloat(num2);
 };
 
+const precision1 = calculator.secondary % 1 === 0 ? 0 : calculator.secondary.toString().split('.')[1].length;
+const precision2 = calculator.primary % 1 === 0 ? 0 : calculator.primary.toString().split('.')[1].length;
