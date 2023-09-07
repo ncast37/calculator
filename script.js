@@ -1,5 +1,8 @@
 const buttonsArray = document.querySelectorAll('.btn');
 const resultScreen = document.querySelector('.result-screen');
+const MAXLENGTH = 8; 
+
+// The calculator object will store the states and methods 
 const calculator = {
     'log': [''],
     'primary': '0',
@@ -44,6 +47,8 @@ const calculator = {
     },
 
     updateScreen(){
+        let trimmedString = this.primary.toString();
+        this.primary = trimmedString.substring(0, MAXLENGTH);
         resultScreen.textContent = this.primary; 
         return;
     },
@@ -57,6 +62,9 @@ const calculator = {
     },
 }
 
+
+// Only adding one event listener on all calculator buttons
+// The switch statement will handle the various types of buttons 
 buttonsArray.forEach((button) => {
     button.addEventListener('click', (event) =>{
         switch (event.target.dataset.selection) {
@@ -72,18 +80,23 @@ buttonsArray.forEach((button) => {
                 break; 
 
             case "op" :
+                /* Use a flag (stop = false/true) as a condition to break out of case if 
+                   conditions are not set to perform a calcualtion. If flag is not added
+                   then the calculation operation would occur on line 95 */
                 let stop = false;
                 for (const key in calculator) {
                     if (calculator[key] === null) {
                         calculator.operation = calculator.keyMap[event.target.id];
                         calculator.log = [''];
                         stop = true;
-                        break; // Object has a property with a null value
+                        break; 
                     }
-                } // No property with a null value found
+                }
                 if(stop === true){
                     break;
                 }
+
+                // conditions have been met to perform calculation operation
                 const precision1 = calculator.secondary % 1 === 0 ? 0 : calculator.secondary.toString().split('.')[1].length;
                 const precision2 = calculator.primary % 1 === 0 ? 0 : calculator.primary.toString().split('.')[1].length;
                 const maxPrecision = Math.max(precision1, precision2);
@@ -96,6 +109,10 @@ buttonsArray.forEach((button) => {
                 break;
 
             case "alt":
+                /* Used two if statments within the 'alt' case to differentiate 
+                between the +/- button and % button being clicked. They
+                are the only two button types with the 'alt' data-selection attribute*/
+
                 if(event.target.id === 'plus-minus'){
                     const arr = calculator.primary.split('');
                     if(arr[0] === '-'){
@@ -107,6 +124,9 @@ buttonsArray.forEach((button) => {
                         calculator.primary = '-' + calculator.primary;
                         calculator.updateScreen(calculator.primary);
                     }
+                } else if(event.target.id === 'percent'){
+                    calculator.primary = calculator.primary / 100.00;
+                    calculator.updateScreen();
                 }
                 break;
             case "reset":
