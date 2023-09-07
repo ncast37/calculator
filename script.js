@@ -80,9 +80,9 @@ buttonsArray.forEach((button) => {
                 break; 
 
             case "op" :
-                /* Use a flag (stop = false/true) as a condition to break out of case if 
-                   conditions are not set to perform a calcualtion. If flag is not added
-                   then the calculation operation would occur on line 95 */
+                /* Use a flag (stop = false/true) to indicate whether conditions are met to 
+                   perform the calculation operation. If conditions are met, then flag will 
+                   remain false and the calculation operation will occur. */
                 let stop = false;
                 for (const key in calculator) {
                     if (calculator[key] === null) {
@@ -137,6 +137,7 @@ buttonsArray.forEach((button) => {
         }
     })
 })
+
 
 function add(num1, num2){
     return parseFloat(num1) + parseFloat(num2);
